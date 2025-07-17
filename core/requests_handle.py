@@ -1,6 +1,7 @@
 import requests
+from typing import Union, Any
 
-def handle_response(url):
+def handle_response(url: str) -> Union[requests.Response,None]:
     """Handle different HTTP status codes with basic error handling."""
     try:
         response = requests.get(url)
@@ -23,11 +24,11 @@ def handle_response(url):
         return None
 
 
-def json_data(response):
+def json_data(response: requests.Response) -> dict[str, Any]:
     data = response.json()
     return data
 
-def pokemon_value_None_False(pokemon_data):
+def pokemon_value_None_False(pokemon_data: Union[None, bool, dict]) -> Union[None, bool, dict]:
     if pokemon_data is None:
         print("There was a problem with the calling")
     elif pokemon_data is False:

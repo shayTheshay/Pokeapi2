@@ -1,7 +1,7 @@
 from deploy.ec2_setup import use_instance
 
 
-def main():
+def main() -> None:
     use_instance()
 
 

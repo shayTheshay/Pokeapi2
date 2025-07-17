@@ -1,13 +1,13 @@
+from typing import Any
 
-
-def farewell_greeting_to_user():
+def farewell_greeting_to_user() -> None:
     print("Thank you for choosing to look at some pokemon with us! have a pleasant day")
 
-def ask_user_draw_pokemon():
+def ask_user_draw_pokemon() -> None:
     print("Would you like to draw a pokemon card?")
 
 
-def present_pokemon_data(pokemon):
+def present_pokemon_data(pokemon: dict[str, Any]) -> None:
     print(f"Pokémon ID: {pokemon['id']}")
     print(f"Name: {pokemon['name'].capitalize()}")
 

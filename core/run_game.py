@@ -5,7 +5,7 @@ from user_input import user_answer
 from pokemon_random import choose_random_num
 from requests_handle import pokemon_value_None_False
 
-def run_game():
+def run_game() -> None:
 
     ask_user_draw_pokemon()
     answer = str(user_answer())

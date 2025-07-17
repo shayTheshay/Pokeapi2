@@ -13,11 +13,11 @@ cd /home/ec2-user
 
 # 4. Clone the project (replace with your real repo if needed)
 echo "Cloning repo..."
-git clone https://github.com/shayTheshay/pokeapi
-cd pokeapi
+git clone https://github.com/shayTheshay/pokeapi2
+cd pokeapi2
 
 # 5. Fix ownership for EC2 user
-sudo chown -R ec2-user:ec2-user /home/ec2-user/pokeapi
+sudo chown -R ec2-user:ec2-user /home/ec2-user/pokeapi2
 
 # 6. Create and activate virtual environment
 python3 -m venv venv
@@ -33,6 +33,6 @@ pip install python-dotenv
 nohup python3 core/run_game.py > game_output.log 2>&1 &
 
 # 9. Automatically start game when SSH connects (interactive session)
-echo 'if [[ $- == *i* ]]; then cd /home/ec2-user/pokeapi && source venv/bin/activate && python3 core/run_game.py; fi' >> /home/ec2-user/.bash_profile
+echo 'if [[ $- == *i* ]]; then cd /home/ec2-user/pokeapi2 && source venv/bin/activate && python3 core/run_game.py; fi' >> /home/ec2-user/.bash_profile
 
 echo "EC2 setup complete. Pokémon game will run now and on each SSH login."

@@ -180,3 +180,6 @@ cython_debug/
 .Rhistory
 .RData
 *.Rproj
+
+# the pokemon_data.json file we create for each user
+pokemon_data.json

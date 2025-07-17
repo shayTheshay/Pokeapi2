@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def create_security_group():
+def create_security_group() -> int:
     ec2 = boto3.client('ec2')
 
     # Get your default VPC (or specify a different one if needed)
@@ -42,7 +42,7 @@ def create_security_group():
 
 
 
-def get_security_group_id():
+def get_security_group_id() -> int:
     ec2 = boto3.client('ec2')
     vpcs = ec2.describe_vpcs()
     vpc_id = vpcs['Vpcs'][0]['VpcId']

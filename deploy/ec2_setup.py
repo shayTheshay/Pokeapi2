@@ -6,7 +6,7 @@ from .security_group_setup import get_security_group_id
 
 load_dotenv()
 
-def use_instance():
+def use_instance() -> list:
     ec2 = boto3.resource('ec2', region_name=os.getenv("REGION_NAME"))
 
     filters = [
@@ -28,7 +28,7 @@ def use_instance():
 
     create_instance()
 
-def create_instance():
+def create_instance() -> None:
 
     sg_id = get_security_group_id()
 
