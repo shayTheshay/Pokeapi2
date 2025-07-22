@@ -1,10 +1,11 @@
 import boto3
 import os
 from dotenv import load_dotenv 
+
 load_dotenv()
 
 
-def create_security_group() -> int:
+def create_security_group() -> str:
     ec2 = boto3.client('ec2')
 
     # Get your default VPC (or specify a different one if needed)
@@ -42,19 +43,22 @@ def create_security_group() -> int:
 
 
 
-def get_security_group_id() -> int:
+def get_security_group_id() -> str:
     ec2 = boto3.client('ec2')
+
     vpcs = ec2.describe_vpcs()
     vpc_id = vpcs['Vpcs'][0]['VpcId']
 
+    GroupName=os.getenv("SECURITY_GROUP_NAME")
     # Check if SG already exists
-    existing_groups = ec2.describe_security_groups(
+    response = ec2.describe_security_groups(
         Filters=[
-            {'Name': 'group-name', 'Values': ['pokeapi-sg']},
+            {'Name': 'group-name', 'Values': [GroupName]},
             {'Name': 'vpc-id', 'Values': [vpc_id]}
         ]
-    )['SecurityGroups']
+    )
 
+    existing_groups = response['SecurityGroups']
     if existing_groups:
         sg_id = existing_groups[0]['GroupId']
         print(f"Security Group already exists: {sg_id}")
@@ -63,3 +67,4 @@ def get_security_group_id() -> int:
     # If not exists, create it
     print("Security Group does not exist. Creating it...")
     return create_security_group()
+

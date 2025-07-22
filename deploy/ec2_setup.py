@@ -6,7 +6,7 @@ from .security_group_setup import get_security_group_id
 
 load_dotenv()
 
-def use_instance() -> list:
+def ec2_deploy() -> None:
     ec2 = boto3.resource('ec2', region_name=os.getenv("REGION_NAME"))
 
     filters = [
@@ -15,7 +15,6 @@ def use_instance() -> list:
     ]
 
     instances = list(ec2.instances.filter(Filters=filters))
-
     for instance in instances:
         name_tag = next((tag['Value'] for tag in instance.tags if tag['Key'] == 'Name'), None)
         if name_tag == os.getenv("POKEMON_EC2_NAME"):            
@@ -23,10 +22,11 @@ def use_instance() -> list:
                 instance.start()
                 instance.wait_until_running()
                 instance.reload()
-
-            return instance
-
+            return
+    print("No instance found, creating a new instance")        
     create_instance()
+
+
 
 def create_instance() -> None:
 

@@ -1,9 +1,9 @@
-from deploy.ec2_setup import use_instance
-
+from deploy.ec2_setup import ec2_deploy
+from deploy.dynamoDB_setup import deploy_dynamoDB
 
 def main() -> None:
-    use_instance()
-
+    ec2_deploy()
+    deploy_dynamoDB()
 
 if __name__ == "__main__":
     main()
