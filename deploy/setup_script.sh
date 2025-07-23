@@ -28,7 +28,7 @@ pip install --upgrade pip
 pip install -r requirements.txt || echo "requirements.txt not found, continuing..."
 pip install requests
 pip install python-dotenv
-
+pip install boto3
 # 8. Run the Pokémon app on boot (non-interactive background mode)
 nohup python3 core/run_game.py > game_output.log 2>&1 &
 
