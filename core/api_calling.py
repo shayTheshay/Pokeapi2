@@ -2,10 +2,10 @@ from requests_handle import handle_response, json_data
 from file_handling import insert_pokemon_to_json
 from convert_file import convert_to_api
 from constants import min_id, base_url, pokemon_list_url
-from typing import Union
+from typing import Union, Dict, Any
 import requests
 
-def get_pokemon_api_data(pokemon_id:int) -> bool: 
+def get_pokemon_api_data(pokemon_id:int) -> Union[bool, Dict[str, Any]]: #Wrong, should return dict not bool because insert pokemon to json returns dict, also recheck logic for running
     site_available = check_poke_site_available()
     if site_available == False:
         print("There was a problem reaching the site")
@@ -17,7 +17,7 @@ def get_pokemon_api_data(pokemon_id:int) -> bool:
     if pokemon_id_available == False:
         return pokemon_id_unavailable(pokemon_id, max_id)
     else:
-        return insert_pokemon_to_json(json_data(pokemon_id_available))
+        return json_data(pokemon_id_available)
          
 
 def check_poke_site_available() -> Union[requests.Response, bool]:

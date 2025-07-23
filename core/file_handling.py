@@ -30,7 +30,7 @@ def extract_poke_data_json(pokemon_id: int) -> Union[dict, bool]: #check concern
 
 
 
-def insert_pokemon_to_json(pokemon_data:dict)  -> dict: #insert the id name moves and abilities
+def insert_pokemon_to_json(pokemon_data:dict)  -> dict: #insert the id name moves and abilities |||| should not return anything maybe bool
     with open(file_json_name, 'r') as f:
         data = json.load(f) 
 
