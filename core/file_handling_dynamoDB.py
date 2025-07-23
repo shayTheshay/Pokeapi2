@@ -1,4 +1,6 @@
 import boto3
+from convert_file import convert_to_local
+from deploy.dynamoDB_setup import deploy_dynamoDB
 from dotenv import load_dotenv 
 import os
 load_dotenv()
@@ -15,11 +17,17 @@ def check_dynamo_table_exist() -> bool:
         print("Problem occured please check:", e)
         return False
     
+def extract_poke_data_dynamodb(pokemon_id: int) : #check concern of separation
+    file_exist = check_dynamo_table_exist()
+    print("Okay we are here ")
+    return 
 
-def create_pokemon_item(pokemon_data:dict)-> None:
+
+
+def insert_pokemon_to_dynamodb(pokemon_data:dict)-> None:
     try:
 
-        #pokemon_id = str(convert_to_local(pokemon_data['id']))
+        pokemon_id = str(convert_to_local(pokemon_data['id']))
         name = pokemon_data['name']
         types = pokemon_data['types']
         abilities = pokemon_data['abilities']
@@ -32,14 +40,6 @@ def create_pokemon_item(pokemon_data:dict)-> None:
         }
 
         table = dynamo_resource.table
-        table.put_item(
-            Item={
-            'username': 'janedoe',
-            'first_name': 'Jane',
-            'last_name': 'Doe',
-            'age': 25,
-            'account_type': 'standard_user',
-            }
-        )
+        table.put_item(new_pokemon)
     except Exception as e:
         print("There was an error in the code:", e)
