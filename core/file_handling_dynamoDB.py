@@ -1,13 +1,10 @@
 import boto3
 from convert_file import convert_to_local
-from deploy.dynamoDB_setup import deploy_dynamoDB
 from dotenv import load_dotenv 
 import os
 load_dotenv()
 
-
 dynamo_resource = boto3.resource('dynamodb')
-
 
 def check_dynamo_table_exist() -> bool:
     try:
@@ -18,10 +15,12 @@ def check_dynamo_table_exist() -> bool:
         return False
     
 def extract_poke_data_dynamodb(pokemon_id: int) : #check concern of separation
-    file_exist = check_dynamo_table_exist()
-    print("Okay we are here ")
+    file_exist = check_dynamo_table_exist()    
+    if file_exist:
+        print("Okay we are here ")
+    else: 
+        print("Does not work at all")
     return 
-
 
 
 def insert_pokemon_to_dynamodb(pokemon_data:dict)-> None:
