@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-dynamo_resource = boto3.resource('dynamodb', region_name = os.getenv("REGION-NAME"))
+dynamo_resource = boto3.resource('dynamodb', region_name = os.getenv("REGION_NAME"))
 
 def check_dynamo_table_exist() -> bool:
     try:

@@ -15,7 +15,7 @@ def deploy_dynamoDB() -> None:
 
 def create_dynamoDB_instance() -> None:
    # Create a DynamoDB client using the default credentials and region
-    dynamodb = boto3.resource('dynamodb', region_name = os.getenv("REGION-NAME"))
+    dynamodb = boto3.resource('dynamodb', region_name = os.getenv("REGION_NAME"))
 
     #Create the DynamoDB table.
     table = dynamodb.create_table(
