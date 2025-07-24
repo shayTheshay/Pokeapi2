@@ -21,3 +21,12 @@ id_change_convertion = 1025
 id_change_convertion_range = 10000
 
 
+#### This is not suppossed to be here, but as this is an educational only, it is okay
+#### Please use parameter store instead of using this. implement it to access the dynamodb in the ec2 created
+
+region= "us-west-2"
+
+dynamodb_name = "pokemon-database"
+
+
+

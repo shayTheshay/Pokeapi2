@@ -48,3 +48,5 @@ def create_instance() -> None:
         }]
     )[0]
     print("Launched:", instance.id)
+
+    

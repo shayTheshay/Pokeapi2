@@ -1,14 +1,16 @@
 import boto3
 from convert_file import convert_to_local
-from dotenv import load_dotenv 
-import os
-load_dotenv()
 
-dynamo_resource = boto3.resource('dynamodb', region_name = os.getenv("REGION_NAME"))
+
+############################### After implementing parameter store you can remove these lines accordingly
+from constants import region, dynamodb_name
+###############################
+print("Loaded region:", region)
+dynamo_resource = boto3.resource('dynamodb', region_name = region)
 
 def check_dynamo_table_exist() -> bool:
     try:
-        dynamo_resource.Table(os.getenv("DYNAMODB_NAME"))
+        dynamo_resource.Table(dynamodb_name)
         return True
     except Exception as e:
         print("Problem occured please check:", e)
