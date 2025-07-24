@@ -12,7 +12,7 @@ def run_game() -> None:
 
     while answer == "yes":
         random_pokemon_id = choose_random_num() 
-        pokemon = extract_poke_data_json(random_pokemon_id) # extract_poke_data_dynamodb(random_pokemon_id) # checking if pokemon exist in json_file
+        pokemon = extract_poke_data_dynamodb(random_pokemon_id) # extract_poke_data_json(random_pokemon_id) # checking if pokemon exist in json_file
         if pokemon:
             present_pokemon_data(pokemon)
         else:

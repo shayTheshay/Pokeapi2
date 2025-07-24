@@ -40,7 +40,7 @@ def insert_pokemon_to_dynamodb(pokemon_data:dict)-> None:
         "abilities" : abilities,
         }
 
-        table = dynamo_resource.table
-        table.put_item(new_pokemon)
+        table = dynamo_resource.Table(dynamodb_name)
+        table.put_item(Item= new_pokemon)
     except Exception as e:
         print("There was an error in the code:", e)
