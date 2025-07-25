@@ -5,7 +5,7 @@ from convert_file import convert_to_local
 ############################### After implementing parameter store you can remove these lines accordingly
 from constants import region, dynamodb_name
 ###############################
-print("Loaded region:", region)
+
 dynamo_resource = boto3.resource('dynamodb', region_name = region)
 
 def check_dynamo_table_exist() -> bool:
@@ -28,7 +28,7 @@ def extract_poke_data_dynamodb(pokemon_id: int) : #check concern of separation
 def insert_pokemon_to_dynamodb(pokemon_data:dict)-> None:
     try:
 
-        pokemon_id = str(convert_to_local(pokemon_data['id']))
+        pokemon_id = (convert_to_local(pokemon_data['id']))
         name = pokemon_data['name']
         types = pokemon_data['types']
         abilities = pokemon_data['abilities']
