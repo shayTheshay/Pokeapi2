@@ -1,6 +1,5 @@
 import boto3
 import os
-
 from dotenv import load_dotenv 
 from .security_group_setup import get_security_group_id
 
@@ -31,9 +30,7 @@ def ec2_deploy() -> None:
 def create_instance() -> None:
 
     sg_id = get_security_group_id()
-
     ec2 = boto3.resource('ec2', region_name=os.getenv("REGION-NAME"))
-
     instance = ec2.create_instances(
         ImageId=os.getenv("IMAGE_ID"),  # Replace with Ubuntu AMI
         MinCount=1,
@@ -45,7 +42,8 @@ def create_instance() -> None:
         TagSpecifications=[{
             'ResourceType': 'instance',
             'Tags': [{'Key': 'Name', 'Value': os.getenv("POKEMON_EC2_NAME")}]
-        }]
+        }],
+        IamInstanceProfile={'Name': 'LabRole'}
     )[0]
     print("Launched:", instance.id)
 
