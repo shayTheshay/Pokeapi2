@@ -16,13 +16,25 @@ def check_dynamo_table_exist() -> bool:
         print("Problem occured please check:", e)
         return False
     
-def extract_poke_data_dynamodb(pokemon_id: int) : #check concern of separation
+def extract_poke_data_dynamodb(pokemon_id: int) -> dict: #check concern of separation
     file_exist = check_dynamo_table_exist()    
     if file_exist:
-        print("Okay we are here ")
-    else: 
-        print("Does not work at all")
-    return 
+        table = dynamo_resource.Table(dynamodb_name)
+        try:
+            key = {
+                'id': pokemon_id
+            }
+            response = table.get_item(Key=key)
+            item = response.get('Item')
+        
+            return item
+        
+        except Exception as e:
+            print("There was a problem: ", e)
+
+    else:
+        print("There was a problem, for some reason the table was not created as needed")
+        return None
 
 
 def insert_pokemon_to_dynamodb(pokemon_data:dict)-> None:

@@ -14,6 +14,7 @@ def run_game() -> None:
         random_pokemon_id = choose_random_num() 
         pokemon = extract_poke_data_dynamodb(random_pokemon_id) # extract_poke_data_json(random_pokemon_id) # checking if pokemon exist in json_file
         if pokemon:
+            print("Hey! it seems I have succeeded in saving and looking up data!!!")
             present_pokemon_data(pokemon)
         else:
             pokemon_data = get_pokemon_api_data(random_pokemon_id)
