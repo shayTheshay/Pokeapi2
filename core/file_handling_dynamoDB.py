@@ -22,7 +22,7 @@ def extract_poke_data_dynamodb(pokemon_id: int) -> dict: #check concern of separ
         table = dynamo_resource.Table(dynamodb_name)
         try:
             key = {
-                'id': pokemon_id
+                'id': pokemon_id # The "id" is hard coded, please make sure to separate into constants or even make it available in parameter store, this is just an educational project thus not needed here
             }
             response = table.get_item(Key=key)
             item = response.get('Item')
