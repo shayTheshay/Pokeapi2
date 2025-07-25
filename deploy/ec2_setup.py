@@ -43,7 +43,7 @@ def create_instance() -> None:
             'ResourceType': 'instance',
             'Tags': [{'Key': 'Name', 'Value': os.getenv("POKEMON_EC2_NAME")}]
         }],
-        IamInstanceProfile={'Name': 'LabRole'}
+        IamInstanceProfile={'Name': 'LabInstanceProfile'}
     )[0]
     print("Launched:", instance.id)
 
